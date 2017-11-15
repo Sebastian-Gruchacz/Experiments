@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContextualExceptionHandlers
 {
-    public interface 
+    //public interface 
 
     public class Class1
     {
