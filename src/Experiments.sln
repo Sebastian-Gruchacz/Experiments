@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entity", "Entity", "{DD805515-CEE4-4CE2-B2E0-51CCD3D8A97F}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Patterns", "Patterns", "{3D059411-1DB9-4656-8CCC-D49A7D8B362B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContextualExceptionHandlers", "ContextualExceptionHandlers\ContextualExceptionHandlers.csproj", "{7BCCADDF-D35C-4AA1-AA3C-0FAF20BBACC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyTests", "DependencyTests\DependencyTests.csproj", "{B77A1B26-55B2-446A-9689-147854E147FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{7BCCADDF-D35C-4AA1-AA3C-0FAF20BBACC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BCCADDF-D35C-4AA1-AA3C-0FAF20BBACC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BCCADDF-D35C-4AA1-AA3C-0FAF20BBACC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B77A1B26-55B2-446A-9689-147854E147FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B77A1B26-55B2-446A-9689-147854E147FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B77A1B26-55B2-446A-9689-147854E147FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B77A1B26-55B2-446A-9689-147854E147FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
