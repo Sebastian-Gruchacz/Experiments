@@ -86,7 +86,7 @@
             var r = this.A();
             if (r.HasFailed)
             {
-                return Result<int>.Cast(r);
+                return r.Cast<int>();
             }
 
             return 0;

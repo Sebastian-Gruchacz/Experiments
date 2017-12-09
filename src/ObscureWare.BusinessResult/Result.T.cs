@@ -10,7 +10,7 @@
         private const string BAD_IMPLEMENTATION = @"You cannot use Result<bool>. Use regular Result instead.";
 
         /// <inheritdoc />
-        private Result(ResultState state, string errorMessage = null) : base(state, errorMessage)
+        internal Result(ResultState state, string errorMessage = null) : base(state, errorMessage)
         {
             if (typeof(T) == typeof(bool))
             {
@@ -18,7 +18,7 @@
             }
         }
 
-        private Result(T value) : base(ResultState.OK)
+        internal Result(T value) : base(ResultState.OK)
         {
             if (typeof(T) == typeof(bool))
             {
@@ -28,7 +28,7 @@
             this._value = value;
         }
 
-        private Result(Exception exception) : base(exception)
+        internal Result(Exception exception) : base(exception)
         {
             if (typeof(T) == typeof(bool))
             {
@@ -73,28 +73,6 @@
         public static implicit operator Result<T>(Exception ex)
         {
             return new Result<T>(ex);
-        }
-
-        /// <summary>
-        /// Casts inner operation failure into typed failure
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static Result<T> Cast(Result value)
-        {
-            if (value.IsSuccess)
-            {
-                throw new InvalidOperationException($"Cannot convert successful Result into Result<{nameof(T)}>.");
-            }
-
-            if (value.Exception != null)
-            {
-                return new Result<T>(value.Exception);
-            }
-            else
-            {
-                return new Result<T>(value._state, value.ErrorMessage);
-            }
         }
 
         public new static Result<T> Fail => _fail;
