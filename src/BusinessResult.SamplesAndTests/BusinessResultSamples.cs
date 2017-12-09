@@ -66,7 +66,8 @@
             catch (Exception ex)
             {
                 return ex;
-                // return Result<Guid>.Fail;
+                //return ex.ToResult<Guid>();
+                //return Result<Guid>.Fail; // also possible, but lost exception details
             }
         }
 
@@ -90,6 +91,12 @@
             }
 
             return 0;
+        }
+
+        public Result<int> ErrorTextWithGeneric()
+        {
+            
+            return "Invalid operation".AsFailedResult<int>();
         }
     }
 }

@@ -41,5 +41,25 @@
             }
         }
 
+        public static Result<T> AsFailedResult<T>(this string errorMessage)
+        {
+            if (errorMessage == null)
+            {
+                throw new ArgumentNullException(nameof(errorMessage));
+            }
+
+            return new Result<T>(ResultState.Failure, errorMessage);
+        }
+
+        public static Result<T> ToResult<T>(this Exception ex)
+        {
+            if (ex == null)
+            {
+                throw new ArgumentNullException(nameof(ex));
+            }
+
+            return new Result<T>(ex);
+        }
+
     }
 }

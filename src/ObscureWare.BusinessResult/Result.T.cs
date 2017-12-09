@@ -7,14 +7,14 @@
         private static readonly Result<T> _fail = new Result<T>(ResultState.Failure, "");
 
         private readonly T _value;
-        private const string BAD_IMPLEMENTATION = @"You cannot use Result<bool>. Use regular Result instead.";
+        private const string BAD_IMPLEMENTATION_WITH_BOOL = @"You cannot use Result<bool>. Use regular Result instead.";
 
         /// <inheritdoc />
         internal Result(ResultState state, string errorMessage = null) : base(state, errorMessage)
         {
             if (typeof(T) == typeof(bool))
             {
-                throw new InvalidOperationException(BAD_IMPLEMENTATION);
+                throw new InvalidOperationException(BAD_IMPLEMENTATION_WITH_BOOL);
             }
         }
 
@@ -22,7 +22,7 @@
         {
             if (typeof(T) == typeof(bool))
             {
-                throw new InvalidOperationException(BAD_IMPLEMENTATION);
+                throw new InvalidOperationException(BAD_IMPLEMENTATION_WITH_BOOL);
             }
 
             this._value = value;
@@ -32,7 +32,7 @@
         {
             if (typeof(T) == typeof(bool))
             {
-                throw new InvalidOperationException(BAD_IMPLEMENTATION);
+                throw new InvalidOperationException(BAD_IMPLEMENTATION_WITH_BOOL);
             }
         }
 
