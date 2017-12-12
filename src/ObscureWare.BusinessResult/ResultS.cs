@@ -1,30 +1,29 @@
-﻿namespace ObscureWare.BusinessResult
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ObscureWare.BusinessResult
 {
-
-    // Some more inspiration: http://enterprisecraftsmanship.com/2015/03/20/functional-c-handling-failures-input-errors/
-
-    using System;
-    using System.CodeDom;
-
-    // TODO: non-nullable class (must be class because of inheritance for Result<T>...)
-
-    public class Result : IEquatable<Result>
+    public struct ResultS : IEquatable<ResultS>
     {
-        private static Result _ok = new Result(ResultState.OK);
+        private static ResultS _ok = new ResultS(ResultState.OK);
 
-        private static Result _fail = new Result(ResultState.Failure, "");
+        private static ResultS _fail = new ResultS(ResultState.Failure, "");
 
         internal readonly ResultState _state;
         private readonly string _errorMessage;
-        private readonly Exception _exception = null;
+        private readonly Exception _exception;
 
-        protected internal Result(ResultState state, string errorMessage = null)
+        internal ResultS(ResultState state, string errorMessage = null)
         {
             this._state = state;
             this._errorMessage = errorMessage;
+            this._exception = null;
         }
 
-        protected internal Result(Exception exception, string message = null) : this(ResultState.Exception, message ?? exception.Message)
+        internal ResultS(Exception exception, string message = null) : this(ResultState.Exception, message ?? exception.Message)
         {
             this._exception = exception;
         }
@@ -38,7 +37,7 @@
         public Exception Exception => this._exception;
 
         /// <inheritdoc />
-        public bool Equals(Result other)
+        public bool Equals(ResultS other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -52,43 +51,43 @@
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
 
-            return Equals((Result) obj);
+            return Equals((ResultS)obj);
         }
 
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            return (int) this._state;
+            return (int)this._state;
         }
 
-        public static Result OK => _ok;
+        public static ResultS OK => _ok;
 
-        public static Result Fail => _fail;
+        public static ResultS Fail => _fail;
 
 
-        public static implicit operator bool (Result r)
+        public static implicit operator bool(ResultS r)
         {
             return r.IsSuccess;
         }
 
-        public static implicit operator Result (bool b)
+        public static implicit operator ResultS(bool b)
         {
             return (b) ? OK : Fail;
         }
 
-        public static implicit operator Result(string message)
+        public static implicit operator ResultS(string message)
         {
             if (string.IsNullOrWhiteSpace(message))
             {
                 throw new ArgumentException("message", nameof(message));
             }
 
-            return new Result(ResultState.Failure, message);
+            return new ResultS(ResultState.Failure, message);
         }
 
-        public static Result FromException(Exception ex, string message = null)
+        public static ResultS FromException(Exception ex, string message = null)
         {
-            return new Result(ex, message);
+            return new ResultS(ex, message);
         }
     }
 }
